@@ -5,31 +5,28 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 import ButtonComponent from "../../components/button/button.component";
-import CheckBoxComponent from "../../components/checkbox/checkbox.component";
 import InputComponent from "../../components/input/input.component";
 
-function LoginContainer() {
+function RegisterContainer() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [rememberMe, setRememberMe] = useState<boolean>(false);
+    const [passwordAgain, setPasswordAgain] = useState<string>('');
 
     function handleSetState<T>(setState: Dispatch<SetStateAction<T>>) {
         return (target: unknown): void => setState(target as T);
     }
 
-    function toggleRememberMe() {
-        setRememberMe(state => !state);
-    }
-
-    function handleClickLogin() {
-        console.log('login');
+    function handleClickRegister() {
+        if (password !== passwordAgain) {
+            console.log('failed')
+        }
     }
 
     return (
         <div className="w-max m-auto">
             <img className="w-32 h-32 rounded-full object-cover m-auto mb-3.5" src="/logo.jpg" alt="logo" />
-            <h1 className="text-center text-5xl font-light mb-5">Hello Again!</h1>
-            <p className="w-80 text-center mb-7 m-auto">Thanks for coming back, we improve your experience every day</p>
+            <h1 className="text-center text-5xl font-light mb-5">Welcome to <h1 className="text-primary">Remember For Me</h1></h1>
+            <p className="w-80 text-center mb-7 m-auto">Thanks for coming with us, we improve your experience every day</p>
             <div className="grid gap-y-3.5 m-auto mb-2">
                 <InputComponent
                     type="text"
@@ -43,22 +40,19 @@ function LoginContainer() {
                     value={password}
                     placeholder="Password"
                 />
-            </div>
-            <div className="flex justify-between">
-                <span className="flex items-center gap-2">
-                    <CheckBoxComponent value={rememberMe} handleCheck={toggleRememberMe} />
-                    <label>Remember Me</label>
-                </span>
-                <p className="text-primary hover:opacity-50 font-bold cursor-pointer">
-                    Recovery Password
-                </p>
+                <InputComponent
+                    type="password"
+                    handleInputing={handleSetState<string>(setPasswordAgain)}
+                    value={passwordAgain}
+                    placeholder="Password Again"
+                />
             </div>
             <div className="my-7">
-                <ButtonComponent type="primary" content="Login" handleClick={handleClickLogin} />
+                <ButtonComponent type="primary" content="Register" handleClick={handleClickRegister} />
             </div>
-            <p className="text-center text-secondary cursor-pointer"><Link to='/auth/register'>Don't have an account yet?</Link></p>
+            <p className="text-center text-secondary cursor-pointer"><Link to='/auth/login'>Have an account!</Link></p>
         </div>
     );
 }
 
-export default LoginContainer;
+export default RegisterContainer;
