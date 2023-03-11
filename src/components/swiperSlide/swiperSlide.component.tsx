@@ -19,7 +19,7 @@ function SwiperSlideComponent({ data, direction, playDelay }: IPropsSwiperSlideC
             className="w-full"
         >
             {data.map(item => (
-                <SwiperSlide>
+                <SwiperSlide key={item}>
                     <img className="w-96 h-96 m-auto" src={item} alt="slide image" />
                 </SwiperSlide>
             ))}

@@ -7,11 +7,14 @@ import { Link } from "react-router-dom";
 import ButtonComponent from "../../components/button/button.component";
 import CheckBoxComponent from "../../components/checkbox/checkbox.component";
 import InputComponent from "../../components/input/input.component";
+import { useLoginMutation } from "../../utils/auth";
 
 function LoginContainer() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [rememberMe, setRememberMe] = useState<boolean>(false);
+
+    const { login }= useLoginMutation()
 
     function handleSetState<T>(setState: Dispatch<SetStateAction<T>>) {
         return (target: unknown): void => setState(target as T);
@@ -22,7 +25,14 @@ function LoginContainer() {
     }
 
     function handleClickLogin() {
-        console.log('login');
+        login({
+            variables: {
+                input: { 
+                    username,
+                    password
+                }
+            }
+        })
     }
 
     return (

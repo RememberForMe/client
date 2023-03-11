@@ -11,7 +11,10 @@ import {
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: 'http://localhost:3000/graphql/'
+    uri: 'http://localhost:3000/graphql/',
+    headers: {
+        authorization: `Bearer ${localStorage.getItem('access_token')}` || ''
+    }
 })
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
