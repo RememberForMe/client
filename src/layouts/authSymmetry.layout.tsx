@@ -1,6 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper';
 import 'swiper/css';
 import SwiperSlideComponent from "../components/swiperSlide/swiperSlide.component";
 
