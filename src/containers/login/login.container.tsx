@@ -66,7 +66,7 @@ function LoginContainer() {
             <div className="my-7">
                 <ButtonComponent type="primary" content="Login" handleClick={handleClickLogin} />
             </div>
-            <p className="text-center text-secondary cursor-pointer"><Link to='/auth/register'>Don't have an account yet?</Link></p>
+            <p className="text-center text-secondary cursor-pointer"><Link to='/register'>Don't have an account yet?</Link></p>
         </div>
     );
 }

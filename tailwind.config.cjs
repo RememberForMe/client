@@ -9,6 +9,9 @@ module.exports = {
             colors: {
                 'primary': primaryColor,
                 'secondary': secondaryColor 
+            },
+            scale: {
+                '110': '1.10'
             }
         },
     },

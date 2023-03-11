@@ -70,7 +70,7 @@ function RegisterContainer() {
             <div className="my-7">
                 <ButtonComponent type="primary" content="Register" handleClick={handleClickRegister} />
             </div>
-            <p className="text-center text-secondary cursor-pointer"><Link to='/auth/login'>Have an account!</Link></p>
+            <p className="text-center text-secondary cursor-pointer"><Link to='/login'>Have an account!</Link></p>
         </div>
     );
 }
