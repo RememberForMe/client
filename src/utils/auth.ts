@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { loginGQL } from '../graphql/gqls/auth.gql';
+import { loginGQL, registerGQL } from '../graphql/gqls/auth.gql';
 
 interface ILoginResponse {
     access_token: string;
@@ -17,4 +17,10 @@ export function useLoginMutation() {
     })
 
     return { login, data, loading, error } 
+}
+
+export function useRegisterMutation() {
+    const [register, { data, loading, error }] = useMutation(registerGQL)
+
+    return { register, data, loading, error }
 }

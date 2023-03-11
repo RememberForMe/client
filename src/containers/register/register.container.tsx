@@ -6,11 +6,22 @@ import {
 import { Link } from "react-router-dom";
 import ButtonComponent from "../../components/button/button.component";
 import InputComponent from "../../components/input/input.component";
+import { useRegisterMutation } from "../../utils/auth";
 
 function RegisterContainer() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordAgain, setPasswordAgain] = useState<string>('');
+
+    const { register, loading, error } = useRegisterMutation()
+
+    if (loading) {
+        console.log('loading register')
+    }
+
+    if (error) {
+        console.log('error register')
+    }
 
     function handleSetState<T>(setState: Dispatch<SetStateAction<T>>) {
         return (target: unknown): void => setState(target as T);
@@ -19,6 +30,15 @@ function RegisterContainer() {
     function handleClickRegister() {
         if (password !== passwordAgain) {
             console.log('failed')
+        } else {
+            register({
+                variables: {
+                    input: {
+                        username,
+                        password
+                    }
+                }
+            })
         }
     }
 

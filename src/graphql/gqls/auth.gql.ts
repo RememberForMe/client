@@ -7,3 +7,13 @@ export const loginGQL = gql`
         }
     }
 `
+
+export const registerGQL = gql`
+    mutation Register($input: AuthInput!) {
+        register(registerInput: $input) {
+            username
+            email
+            isActived
+        }
+    }
+`
