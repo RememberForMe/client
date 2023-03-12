@@ -1,9 +1,9 @@
 import { ApolloError } from "@apollo/client";
 import { Dispatch, SetStateAction, useState } from "react";
+import ErrorComponent from "../../components/error/error.component";
 import HobbyBoxComponent from "../../components/hobbyBox/hobbyBox.component";
+import FetchLoadingComponent from "../../components/loading/fetchLoading.component";
 import { HobbiesResponse, Hobby } from "../../types/hobbies-response.type";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 interface IPropsHobbiesBoxWrapperContainer {
     data: HobbiesResponse
@@ -24,16 +24,12 @@ function HobbiesBoxWrapperContainer({ data, loading, error }: IPropsHobbiesBoxWr
         };
     }
 
-    if (error) {
-        console.log(error.name)
-    }
-
     return (
         <div className="flex flex-wrap justify-center border w-11/12 md:w-9/12 m-auto drop-shadow-xl bg-white rounded-xl p-7 gap-4 md:gap-8">
-            {loading ? <p>Loading...</p> : data.map((hobby: Hobby) => (
+            {loading ? <FetchLoadingComponent/> : data.map((hobby: Hobby) => (
                 <HobbyBoxComponent key={hobby.id} checked={checkedHobbies.includes(hobby.id)} id={hobby.id} name={hobby.name} handleCheck={handleCheckHobby(setCheckedHobbies)} />
             ))}
-            {error && <FontAwesomeIcon icon={faTriangleExclamation} size='3x' color="red"/>}
+            {error && <ErrorComponent error={error}/>}
         </div>
     );
 }
